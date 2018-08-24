@@ -4,7 +4,9 @@ Iron Digger
 """
 import math
 from pandas import read_csv
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib.pyplot import scatter, show
 from gmplot import gmplot
 
 GMAP = gmplot.GoogleMapPlotter(12.925628, 77.68656, 13)
@@ -21,7 +23,7 @@ for index, row in MAGNETIC_FIELD.iterrows():
                   (MAGNETIC_FIELD.loc[index, "MAGNETIC FIELD Y (μT)"]) ** 2 +
                   (MAGNETIC_FIELD.loc[index, "MAGNETIC FIELD Z (μT)"]) ** 2)
     if x >= 200:
-        plt.scatter(index, x, color='red')
+        scatter(index, x, color='red')
         for i in range(5):
             LATITUDE.append(MAGNETIC_FIELD.loc[index, 'LOCATION Latitude : '])
             LONGITUDE.append(MAGNETIC_FIELD.loc[index, 'LOCATION Longitude : '])
@@ -30,15 +32,15 @@ for index, row in MAGNETIC_FIELD.iterrows():
         for i in range(2):
             LATITUDE.append(MAGNETIC_FIELD.loc[index, 'LOCATION Latitude : '])
             LONGITUDE.append(MAGNETIC_FIELD.loc[index, 'LOCATION Longitude : '])
-        plt.scatter(index, x, color='orange')
+        scatter(index, x, color='orange')
     elif 50 <= x < 100:
         for i in range(1):
             LATITUDE.append(MAGNETIC_FIELD.loc[index, 'LOCATION Latitude : '])
             LONGITUDE.append(MAGNETIC_FIELD.loc[index, 'LOCATION Longitude : '])
-        plt.scatter(index, x, color='darksalmon')
+        scatter(index, x, color='darksalmon')
     TOTAL_MAGNETIC_FIELD.append(x)
 MAGNETIC_FIELD['MAGNETIC FIELD TOTAL (μT)'] = TOTAL_MAGNETIC_FIELD
 MAGNETIC_FIELD.hist(column='MAGNETIC FIELD TOTAL (μT)', bins=5000)
 GMAP.heatmap(LATITUDE, LONGITUDE)
 GMAP.draw("my_map.html")
-plt.show()
+show()

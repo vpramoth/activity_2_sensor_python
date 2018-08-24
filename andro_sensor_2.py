@@ -3,7 +3,10 @@
 Ambience based music and background
 """
 import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.use('Agg')
+from matplotlib.pyplot import imshow, show, draw, axis, close, pause
 from PIL import Image
 import numpy as np
 import playsound
@@ -12,7 +15,7 @@ FILE = 'data/3.csv'
 DF1 = pd.read_csv(FILE)
 LIGHT = DF1[['LIGHT (lux)', 'Time since start in ms ']]
 # light.hist(column='LIGHT (lux)')
-plt.axis('off')
+axis('off')
 SUM_TOT = 0
 i = 0
 TIME_FLAG = LIGHT.loc[0, 'Time since start in ms ']
@@ -31,35 +34,35 @@ for index, row in LIGHT.iterrows():
             ImageAddress = 'data/1.jpeg'
             ImageItself = Image.open(ImageAddress)
             ImageNumpyFormat = np.asarray(ImageItself)
-            plt.imshow(ImageNumpyFormat)
-            plt.draw()
-            plt.pause(1)  # pause how many seconds
-            plt.close()
+            imshow(ImageNumpyFormat)
+            draw()
+            pause(1)  # pause how many seconds
+            close()
             playsound.playsound('data/1.mp3')
         elif 500 <= AVG < 1500:
             print("Its Quite Normal around here.Enjoy the moments")
             ImageAddress = 'data/2.jpeg'
             ImageItself = Image.open(ImageAddress)
             ImageNumpyFormat = np.asarray(ImageItself)
-            plt.imshow(ImageNumpyFormat)
-            plt.draw()
-            plt.pause(1)  # pause how many seconds
+            imshow(ImageNumpyFormat)
+            draw()
+            pause(1)  # pause how many seconds
             # plt.close()
             playsound.playsound('data/2.mp3')
-            plt.close()
+            close()
 
         elif AVG > 1500:
             print("Its Bright out here!!")
             ImageAddress = 'data/3.jpeg'
             ImageItself = Image.open(ImageAddress)
             ImageNumpyFormat = np.asarray(ImageItself)
-            plt.imshow(ImageNumpyFormat)
-            plt.draw()
-            plt.pause(1)  # pause how many seconds
-            plt.close()
+            imshow(ImageNumpyFormat)
+            draw()
+            pause(1)  # pause how many seconds
+            close()
             playsound.playsound('data/3.mp3')
 
 AVG = pd.DataFrame()
 AVG['avg'] = ARR
 # print(arr)
-plt.show()
+show()
