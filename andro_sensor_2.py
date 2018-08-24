@@ -4,7 +4,6 @@ Ambience based music and background
 """
 import pandas as pd
 import matplotlib
-
 matplotlib.use('Agg')
 from matplotlib.pyplot import imshow, show, draw, axis, close, pause
 from PIL import Image
