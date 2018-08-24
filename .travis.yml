@@ -1,0 +1,12 @@
+language: python
+python:
+  - "3.6"
+cache: pip
+# command to install dependencies
+before_script:
+  - easy_install distribute
+  - pip install -r requirements.txt
+# command to run tests
+script:
+- python andro_metal.py
+- python andro_sensor_2.py
