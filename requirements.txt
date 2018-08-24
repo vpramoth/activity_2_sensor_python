@@ -4,6 +4,7 @@ matplotlib
 gmplot
 Pillow
 numpy
-python-gi
+vext
+vext.gi
 playsound
 
