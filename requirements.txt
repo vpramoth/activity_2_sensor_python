@@ -4,6 +4,6 @@ matplotlib
 gmplot
 Pillow
 numpy
-python3-gi
+python-gi
 playsound
 
