@@ -4,10 +4,12 @@ python:
 cache: pip
 # command to install dependencies
 before_script:
+  - source ~/virtualenv/python3.6_with_system_site_packages/bin/activate
   - easy_install distribute
   - pip install -r requirements.txt
   - pip3 install playsound
 # command to run tests
 script:
+-
 - python andro_metal.py
 - python andro_sensor_2.py
