@@ -5,6 +5,5 @@ gmplot
 Pillow
 numpy
 vext
-vext.gi
-playsound
+
 
